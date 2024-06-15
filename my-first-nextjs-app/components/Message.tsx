@@ -1,11 +1,13 @@
-type MessageProps = {
-  nickName: string;
-  date: string;
-  text: string;
+import type { MessageStructure } from "./MessageList";
+
+export type MessageProps = {
+  message: MessageStructure;
 };
 
-function Message({ nickName, date, text }: MessageProps) {
+export default function Message({ message }: MessageProps) {
+  const {nickName, date, text} = message;
   return (
+    <div className="p-3">
     <div className="message-box">
       <div className="flex flex-row border-b-2 border-blue-600">
         <div className="pb-1 font-bold">{nickName}</div>
@@ -14,7 +16,6 @@ function Message({ nickName, date, text }: MessageProps) {
       </div>
       <div className="pt-3">{text}</div>
     </div>
+    </div>
   );
 }
-
-export default Message;
