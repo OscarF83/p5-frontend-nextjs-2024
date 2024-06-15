@@ -16,6 +16,10 @@
   color: rgb(205, 204, 226);
 }
 
+h1 {
+  font: 3em bold flex justify-center;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
