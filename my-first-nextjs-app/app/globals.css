@@ -3,27 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  color: rgb(0, 0, 0);
+  background-color: rgb(220, 220, 220);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.message-box {
+  background-color: rgb(118, 159, 221);
+  padding: 1em;
+  border-radius: 2cap;
+  border-width: 2px;
+  border-color: rgb(73, 128, 224);
+  color: rgb(205, 204, 226);
 }
 
 @layer utilities {
