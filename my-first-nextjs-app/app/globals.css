@@ -17,7 +17,7 @@
 }
 
 h1 {
-  font: 3em bold flex justify-center;
+  font: 3em bold;
 }
 
 @layer utilities {
