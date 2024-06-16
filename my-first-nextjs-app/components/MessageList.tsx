@@ -1,23 +1,17 @@
+import type { MessageStructure } from "@/scripts/readJson";
 import Message from "./Message";
 
-export type MessageStructure = {
-    id: number;
-    nickName: string;
-    name: string;
-    date: string;
-    text: string;
-  };
-
 type MessageListProps = {
-    messagelist: MessageStructure[];
+  messagelist: MessageStructure[];
 }
 
-export default function MessageList({messagelist}:MessageListProps) {
+export default async function MessageList({messagelist}:MessageListProps) {
+  //const messagelist = await readJson();
   return (
-    <div>
-        {messagelist.map((a) => (
-            <Message key={a.id} message={a}/>
-        ))}
+    <div className="flex flex-col gap-2">
+      {messagelist.map((a) => (
+          <Message key={a.id} message={a} />
+      ))}
     </div>
-  )
+  );
 }

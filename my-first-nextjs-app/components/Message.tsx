@@ -1,21 +1,19 @@
-import type { MessageStructure } from "./MessageList";
+import type { MessageStructure } from "@/scripts/readJson";
 
-export type MessageProps = {
+type MessageProps = {
   message: MessageStructure;
 };
 
 export default function Message({ message }: MessageProps) {
-  const {nickName, date, text} = message;
+  const { nickName, date, text } = message;
   return (
-    <div className="p-3">
-    <div className="message-box">
-      <div className="flex flex-row border-b-2 border-blue-600">
+    <div className="p-1.5 border rounded-lg shadow gap-2 bg-stone-300">
+      <div className="flex flex-row border-b-2 border-stone-600">
         <div className="pb-1 font-bold">{nickName}</div>
         <div className="flex-1"></div>
         <div>{date}</div>
       </div>
-      <div className="pt-3">{text}</div>
-    </div>
+      <div className="pt-2">{text}</div>
     </div>
   );
 }
