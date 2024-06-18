@@ -1,12 +1,6 @@
+import { MessageStructure } from "@/components/Message";
 import { readFile } from "fs/promises";
 
-export type MessageStructure = {
-    id: number;
-    nickName: string;
-    name: string;
-    date: string;
-    text: string;
-  };
 
 export async function readJson(){
 const lecturaValue = await readFile("datos.json");

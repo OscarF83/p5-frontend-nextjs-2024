@@ -1,4 +1,10 @@
-import type { MessageStructure } from "@/scripts/readJson";
+export type MessageStructure = {
+  id: number;
+  nickName: string;
+  name: string;
+  date: string;
+  text: string;
+};
 
 type MessageProps = {
   message: MessageStructure;

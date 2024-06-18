@@ -1,19 +1,19 @@
 import Message from "@/components/Message";
 import MessageForm from "@/components/MessageForm";
-import MessageList from "@/components/MessageList";
-import { readJson } from "@/scripts/readJson";
+import {readJson} from "@/lib/readJson";
 
-const valueJsonFile = await readJson();
-
-export default function Home() {
+export default async function Home() {
+  const messagesList = await readJson();
   return (
     <main>
       <h1 className="justify-center"> Multi-thematic forum </h1>
-      <div className="p-3">
-        <MessageList messagelist={valueJsonFile} />
-      </div>
-      <div className="p-3">
-        <MessageForm />
+      <div className="p-6 flex flex-col gap-2">
+      {messagesList.map((a) => (
+          <Message key={a.id} message={a} />
+      ))}
+    </div>
+    <div className="p-3">
+        <MessageForm/>
       </div>
     </main>
   );
