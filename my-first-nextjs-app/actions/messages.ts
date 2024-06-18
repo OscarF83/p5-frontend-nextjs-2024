@@ -1,5 +1,9 @@
 "use server";
 
+import { readJson } from "@/lib/readJson";
+import { writeJson } from "@/lib/writeJson";
+import { revalidatePath } from "next/cache";
+
 export async function actionAddMessage(formData: FormData) {
   const nickField = formData.get("nick");
   if (nickField === null) {
@@ -16,5 +20,28 @@ export async function actionAddMessage(formData: FormData) {
   const nick = nickField.toString();
   const name = nameField.toString();
   const message = messageField.toString();
-  console.log(`Desde el servidor ${nick}`)
+
+  const messagesList = await readJson();
+
+  const fecha = new Date();
+
+  const newMessage = {
+    id: messagesList.length + 1,
+    nickName: nick,
+    name: name,
+    date: fecha.toLocaleDateString("es-MX", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: false,
+    }),
+    text: message,
+  };
+
+  messagesList.push(newMessage);
+  await writeJson(messagesList);
+
+  revalidatePath("/");
 }
