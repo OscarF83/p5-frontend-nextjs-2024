@@ -7,12 +7,12 @@ export default async function Home() {
   return (
     <main>
       <h1 className="justify-center"> Multi-thematic forum </h1>
-      <div className="p-6 flex flex-col gap-2">
+      <div className="px-20 py-3 flex flex-col gap-2">
       {messagesList.map((a) => (
           <Message key={a.id} message={a} />
       ))}
     </div>
-    <div className="p-3">
+    <div className="px-20 py-6">
         <MessageForm/>
       </div>
     </main>

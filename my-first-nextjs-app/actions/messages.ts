@@ -38,10 +38,22 @@ export async function actionAddMessage(formData: FormData) {
       hour12: false,
     }),
     text: message,
+    deleted: false,
   };
 
   messagesList.push(newMessage);
   await writeJson(messagesList);
 
+  revalidatePath("/");
+}
+
+export async function actionDeleteMessage(id: number) {
+  console.log(`Mensaje borrado con ${id}`);
+
+  const messagesList = await readJson();
+
+  messagesList[id - 1].deleted = true;
+
+  await writeJson(messagesList);
   revalidatePath("/");
 }

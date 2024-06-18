@@ -9,6 +9,7 @@ type MessageStructure = {
   name: string;
   date: string;
   text: string;
+  deleted: boolean;
 };
 
 type MessageFormProps = {
@@ -19,7 +20,6 @@ export default function MessageForm() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const addMessage = async (formData: FormData) => {
-    console.log(formRef.current);
     formRef.current?.reset();
     await actionAddMessage(formData)
   };
