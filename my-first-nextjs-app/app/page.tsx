@@ -6,8 +6,7 @@ export default async function Home() {
   const messagesList = await readJson();
   return (
     <main>
-      <h1 className="justify-center"> Multi-thematic forum </h1>
-      <div className="px-20 py-3 flex flex-col gap-2">
+      <div className="px-40 py-3 flex flex-col gap-2">
       {messagesList.map((a) => (
           <Message key={a.id} message={a} />
       ))}
