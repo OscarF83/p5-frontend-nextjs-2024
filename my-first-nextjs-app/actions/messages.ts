@@ -47,13 +47,14 @@ export async function actionAddMessage(formData: FormData) {
   revalidatePath("/");
 }
 
-export async function actionDeleteMessage(id: number) {
-  console.log(`Mensaje borrado con ${id}`);
+export async function actionDeleteMessage(id: number, password: string | null ) {
+  console.log(`Mensaje borrado con ${id}, ${password}`);
 
   const messagesList = await readJson();
 
-  messagesList[id - 1].deleted = true;
-
-  await writeJson(messagesList);
+  if (messagesList[id - 1].name === password){
+    messagesList[id - 1].deleted = true;
+    await writeJson(messagesList);
+  }
   revalidatePath("/");
 }
