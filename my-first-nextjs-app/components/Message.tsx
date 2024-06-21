@@ -28,7 +28,7 @@ export default function Message({ message }: MessageProps) {
           <div>{date}</div>
         </div>
         <div className="flex flex-row">
-          <div className="pt-3">{text}</div>
+          <div className="pt-3 text-ellipsis overflow-hidden">{text}</div>
           <div className="flex-1"></div>
           <div className="flex flex-col px-1">
             <button
