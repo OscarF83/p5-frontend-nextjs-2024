@@ -21,7 +21,7 @@ export default function Message({ message }: MessageProps) {
   const textRef = useRef<HTMLInputElement | null>(null);
   if (message.deleted === false) {
     return (
-      <div className="p-6 border rounded-lg shadow gap-2 bg-stone-300">
+      <div className="wmessage p-6 border rounded-lg shadow gap-2 bg-stone-300">
         <div className="flex flex-row border-b-2 border-stone-600">
           <div className="pb-1 font-bold">{nickName}</div>
           <div className="flex-1"></div>
@@ -43,7 +43,7 @@ export default function Message({ message }: MessageProps) {
             <input
               type="password"
               ref={textRef}
-              className="border shadow px-1 rounded-lg w-14"
+              className="border shadow px-1 rounded-lg w-20"
             />
           </div>
         </div>

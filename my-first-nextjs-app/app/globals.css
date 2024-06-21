@@ -77,6 +77,15 @@
   h1 {
     @apply font-extrabold text-3xl mb-4;
   }
+  .wmessage {
+    width: 800px;
+  }
+  .hmessage {
+    height: 300px;
+  }
+  .hsidebar{
+    height: 900px;
+  }
   .debug {
     @apply border-4 border-red-600;
   }
