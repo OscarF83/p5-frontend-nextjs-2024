@@ -3,6 +3,7 @@
 import { readJson } from "@/lib/readJson";
 import { writeJson } from "@/lib/writeJson";
 import { revalidatePath } from "next/cache";
+import { NextResponse } from "next/server";
 
 export async function actionAddMessage(formData: FormData) {
   const nickField = formData.get("nick");
@@ -22,39 +23,42 @@ export async function actionAddMessage(formData: FormData) {
   const message = messageField.toString();
 
   const messagesList = await readJson();
+  if (typeof messagesList != "undefined") {
+    const fecha = new Date();
 
-  const fecha = new Date();
+    const newMessage = {
+      id: messagesList.length + 1,
+      nickName: nick,
+      name: name,
+      date: fecha.toLocaleDateString("es-MX", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: false,
+      }),
+      text: message,
+      deleted: false,
+    };
 
-  const newMessage = {
-    id: messagesList.length + 1,
-    nickName: nick,
-    name: name,
-    date: fecha.toLocaleDateString("es-MX", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: false,
-    }),
-    text: message,
-    deleted: false,
-  };
+    messagesList.push(newMessage);
+    await writeJson(messagesList);
 
-  messagesList.push(newMessage);
-  await writeJson(messagesList);
-
-  revalidatePath("/");
+    revalidatePath("/");
+  } 
 }
 
-export async function actionDeleteMessage(id: number, password: string | null ) {
+export async function actionDeleteMessage(id: number, password: string | null) {
   console.log(`Mensaje borrado con ${id}, ${password}`);
 
-  const messagesList = await readJson();
+    const messagesList = await readJson();
 
-  if (messagesList[id - 1].name === password){
-    messagesList[id - 1].deleted = true;
-    await writeJson(messagesList);
-  }
-  revalidatePath("/");
+    if (typeof messagesList != "undefined") {
+      if (messagesList[id - 1].name === password) {
+        messagesList[id - 1].deleted = true;
+        await writeJson(messagesList);
+      }
+    revalidatePath("/");
+  } 
 }

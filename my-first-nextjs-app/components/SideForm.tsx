@@ -18,7 +18,7 @@ export default function SideForm() {
       action={addMessage}
       className="px-2 w-60"
     >
-      <div className="sticky top-40 flex flex-col gap-4">
+      <div className="top-40 flex flex-col gap-4">
       <div className="px-1 text-white">Nickname:</div>
         <input
           type="text"
