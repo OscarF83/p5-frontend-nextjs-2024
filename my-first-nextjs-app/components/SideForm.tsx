@@ -1,15 +1,24 @@
 "use client";
 
 import { actionAddMessage } from "@/actions/messages";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 
 export default function SideForm() {
   const formRef = useRef<HTMLFormElement>(null);
+  const [inputFill, setInputFill] = useState("");
 
   const addMessage = async (formData: FormData) => {
     formRef.current?.reset();
+    const nickField = formData.get("nick");
+    const nameField = formData.get("name");
+    const messageField = formData.get("message");
+    if ((nickField === "")||(nameField === "")||(messageField === "")){
+      setInputFill("All input fields must be completed!");
+    } else {
+      setInputFill("");
     await actionAddMessage(formData);
+    }
   };
 
   return (
@@ -39,6 +48,7 @@ export default function SideForm() {
         <button className="border shadow font-bold px-2 py-2 mr-2 rounded-lg bg-stone-200 hover:bg-stone-400">
           Send
         </button>
+        <div className="px-1 font-bold text-red-500">{inputFill}</div>
       </div>
     </form>
   );

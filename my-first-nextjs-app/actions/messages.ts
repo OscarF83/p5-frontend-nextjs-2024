@@ -3,24 +3,15 @@
 import { readJson } from "@/lib/readJson";
 import { writeJson } from "@/lib/writeJson";
 import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
 
 export async function actionAddMessage(formData: FormData) {
   const nickField = formData.get("nick");
-  if (nickField === null) {
-    throw new Error(`Missing "nick" field`);
-  }
   const nameField = formData.get("name");
-  if (nameField === null) {
-    throw new Error(`Missing "name" field`);
-  }
   const messageField = formData.get("message");
-  if (messageField === null) {
-    throw new Error(`Missing "message" field`);
-  }
-  const nick = nickField.toString();
-  const name = nameField.toString();
-  const message = messageField.toString();
+
+  const nick = nickField!.toString();
+  const name = nameField!.toString();
+  const message = messageField!.toString();
 
   const messagesList = await readJson();
   if (typeof messagesList != "undefined") {
@@ -44,20 +35,18 @@ export async function actionAddMessage(formData: FormData) {
 
     messagesList.push(newMessage);
     await writeJson(messagesList);
-
-    revalidatePath("/");
-  } 
+  }
+  revalidatePath("/");
 }
 
 export async function actionDeleteMessage(id: number, password: string | null) {
+  const messagesList = await readJson();
 
-    const messagesList = await readJson();
-
-    if (typeof messagesList != "undefined") {
-      if (messagesList[id - 1].name === password) {
-        messagesList[id - 1].deleted = true;
-        await writeJson(messagesList);
-      }
-    revalidatePath("/");
-  } 
+  if (typeof messagesList != "undefined") {
+    if (messagesList[id - 1].name === password) {
+      messagesList[id - 1].deleted = true;
+      await writeJson(messagesList);
+    }
+  }
+  revalidatePath("/");
 }

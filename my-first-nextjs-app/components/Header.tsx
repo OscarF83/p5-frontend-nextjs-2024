@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 
 export default function Header() {
     const router = useRouter();
+  
   return (
     <header className="fixed top-0 left-0 right-0 h-20 bg-stone-700 text-white flex flex-row items-center px-4">
       <Link href="/">

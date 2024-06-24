@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   return (
     <main className="py-40 flex flex-col gap-2">
