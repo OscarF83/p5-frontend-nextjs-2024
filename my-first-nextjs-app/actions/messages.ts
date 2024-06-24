@@ -50,7 +50,6 @@ export async function actionAddMessage(formData: FormData) {
 }
 
 export async function actionDeleteMessage(id: number, password: string | null) {
-  console.log(`Mensaje borrado con ${id}, ${password}`);
 
     const messagesList = await readJson();
 

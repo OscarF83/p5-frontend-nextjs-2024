@@ -36,9 +36,10 @@ export default function Message({ message }: MessageProps) {
                 actionDeleteMessage(message.id, textRef.current!.value);
                 textRef.current!.value = "";
               }}
-              className="border shadow font-bold pr-2 py-1 px-2 my-2 rounded-lg bg-stone-200 hover:bg-stone-400"
+              className="border shadow font-bold pr-2 py-1 px-7 my-2 rounded-lg bg-stone-200 hover:bg-stone-400"
             >
-              Delete
+              <img src="/icon.png" alt="icon" style={{ width: '20px', height: '20px' }}/>
+    
             </button>
             <input
               type="password"
